@@ -20,7 +20,7 @@ export class ProductEditComponent implements OnChanges {
   @Output() saved = new EventEmitter<Product>();
   @Output() cancel = new EventEmitter<void>();
 
-  p: Product = { name: '', price: 0, quantity: 0 };
+  p: Product = { name: '', description: '', location: '', price: 0, quantity: 0 };
 
   constructor(private svc: ProductService) {}
 

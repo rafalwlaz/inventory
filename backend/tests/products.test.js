@@ -13,9 +13,10 @@ describe('Products API', () => {
   test('POST /api/products -> create product', async () => {
     const res = await request(app)
       .post('/api/products')
-      .send({ name: 'TEST ITEM', description: 'for tests', price: 3.33, quantity: 1 });
+      .send({ name: 'TEST ITEM', description: 'for tests', location: 'Test Shelf', price: 3.33, quantity: 1 });
     expect(res.statusCode).toBe(201);
     expect(res.body).toHaveProperty('id');
+    expect(res.body.location).toBe('Test Shelf');
     createdId = res.body.id;
   });
 
@@ -29,9 +30,10 @@ describe('Products API', () => {
   test('PUT /api/products/:id -> updates product', async () => {
     const res = await request(app)
       .put(`/api/products/${createdId}`)
-      .send({ name: 'TEST ITEM UPDATED', description: 'updated', price: 4.44, quantity: 2 });
+      .send({ name: 'TEST ITEM UPDATED', description: 'updated', location: 'Aisle 3', price: 4.44, quantity: 2 });
     expect(res.statusCode).toBe(200);
     expect(res.body.name).toBe('TEST ITEM UPDATED');
+    expect(res.body.location).toBe('Aisle 3');
   });
 
   test('DELETE /api/products/:id -> deletes product', async () => {

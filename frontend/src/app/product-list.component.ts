@@ -18,7 +18,7 @@ import { ProductEditComponent } from './product-edit.component';
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
   editing: Product | null = null;
-  displayedColumns: string[] = ['id', 'name', 'price', 'quantity', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'location', 'price', 'quantity', 'actions'];
   constructor(private svc: ProductService) {}
 
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class ProductListComponent implements OnInit {
   }
 
   createSample() {
-    const sample: Product = { name: 'New item', price: 0, quantity: 0 };
+    const sample: Product = { name: 'New item', location: 'Main Stock', price: 0, quantity: 0 };
     this.svc.create(sample).subscribe(() => this.load());
   }
 

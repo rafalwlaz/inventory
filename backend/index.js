@@ -33,11 +33,11 @@ app.get('/api/products/:id', async (req, res) => {
 
 // Create
 app.post('/api/products', async (req, res) => {
-  const { name, description, price, quantity } = req.body;
+  const { name, description, location, price, quantity } = req.body;
   try {
     const { rows } = await db.query(
-      'INSERT INTO products(name, description, price, quantity) VALUES($1,$2,$3,$4) RETURNING *',
-      [name, description || null, price || 0, quantity || 0]
+      'INSERT INTO products(name, description, location, price, quantity) VALUES($1,$2,$3,$4,$5) RETURNING *',
+      [name, description || null, location || null, price || 0, quantity || 0]
     );
     res.status(201).json(rows[0]);
   } catch (err) {
@@ -48,11 +48,11 @@ app.post('/api/products', async (req, res) => {
 
 // Update
 app.put('/api/products/:id', async (req, res) => {
-  const { name, description, price, quantity } = req.body;
+  const { name, description, location, price, quantity } = req.body;
   try {
     const { rows } = await db.query(
-      'UPDATE products SET name=$1, description=$2, price=$3, quantity=$4, updated_at = now() WHERE id=$5 RETURNING *',
-      [name, description || null, price || 0, quantity || 0, req.params.id]
+      'UPDATE products SET name=$1, description=$2, location=$3, price=$4, quantity=$5, updated_at = now() WHERE id=$6 RETURNING *',
+      [name, description || null, location || null, price || 0, quantity || 0, req.params.id]
     );
     if (rows.length === 0) return res.status(404).json({ error: 'Not found' });
     res.json(rows[0]);

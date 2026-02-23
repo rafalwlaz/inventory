@@ -11,6 +11,11 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill" style="display:block; margin-bottom:8px;">
+    <mat-label>Location</mat-label>
+    <input matInput [(ngModel)]="p.location" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="display:block; margin-bottom:8px;">
     <mat-label>Price</mat-label>
     <input matInput type="number" [(ngModel)]="p.price" />
   </mat-form-field>
