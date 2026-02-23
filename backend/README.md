@@ -32,9 +32,21 @@ The API endpoints
 
 - `GET /api/products`
 - `GET /api/products/:id`
-- `POST /api/products` (JSON body: name, description, price, quantity)
+- `POST /api/products` (JSON body: name, description, location, price, quantity)
 - `PUT /api/products/:id`
 - `DELETE /api/products/:id`
+
+Example create/update payload
+
+```json
+{
+	"name": "Wireless Mouse",
+	"description": "Ergonomic mouse",
+	"location": "Aisle 2 - Bin 4",
+	"price": 24.99,
+	"quantity": 12
+}
+```
 
 Notes
 
